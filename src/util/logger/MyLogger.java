@@ -2,13 +2,12 @@ package util.logger;
 
 
 import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class MyLogger extends MyLoggerLevel implements ILogger {
+public class MyLogger implements ILogger {
     private MyLogger() {
         ConsoleHandler handler = new ConsoleHandler();
-
+        handler.setLevel(MyLoggerLevel.DEBUG.level);
         logger = Logger.getLogger(MyLogger.class.getName());
         logger.addHandler(handler);
         logger.setLevel(MyLoggerLevel.DEBUG.level);
@@ -31,22 +30,22 @@ public class MyLogger extends MyLoggerLevel implements ILogger {
 
     @Override
     public void debug(String message) {
-
+        this.logger.fine(message);
     }
 
     @Override
     public void info(String message) {
-
+        this.logger.info(message);
     }
 
     @Override
     public void warn(String message) {
-
+        this.logger.warning(message);
     }
 
     @Override
     public void error(String message) {
-
+        this.logger.severe(message);
     }
 }
 
